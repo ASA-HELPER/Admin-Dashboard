@@ -30,6 +30,7 @@ function fetchDataAndStore() {
 
 // Call the function to fetch data and store if localStorage is empty
 window.addEventListener("load",function (){
+  console.log('hello')
   fetchDataAndStore();
 })
 
