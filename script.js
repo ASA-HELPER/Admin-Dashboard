@@ -6,7 +6,7 @@ const itemsPerPage = 10;
 // Function to fetch data from the API and store in localStorage if it's empty
 function fetchDataAndStore() {
   const localStorageData = localStorage.getItem('membersData');
-  if(localStorageData?.length!=0)
+  if(localStorage.getItem('membersData')!=undefined)
   {
     // If data is already in localStorage, then parse the data from the localstorage.
     membersData = JSON.parse(localStorageData);
