@@ -6,7 +6,7 @@ const itemsPerPage = 10;
 // Function to fetch data from the API and store in localStorage if it's empty
 function fetchDataAndStore() {
   const localStorageData = localStorage.getItem('membersData');
-  if (localStorageData!=null && localStorageData?.length==0) {
+  if (localStorageData==null && localStorageData?.length==0) {
     fetch('https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json')
       .then(response => response.json())
       .then(data => {
