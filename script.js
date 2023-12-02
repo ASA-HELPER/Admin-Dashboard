@@ -26,9 +26,9 @@ function fetchDataAndStore() {
 }
 
 // Call the function to fetch data and store if localStorage is empty
-window.onload = function() {
+window.addEventListener("load",()=>{
   fetchDataAndStore();
-};
+})
 
 // Function to display members on a specific page
 function displayMembers(page, data = membersData) {
