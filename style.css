@@ -1,0 +1,96 @@
+.container {
+  margin: 0;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.topbar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.delete-selected {
+  border: none;
+  padding: 1px;
+  cursor: pointer;
+}
+
+.member-checkbox,
+#selectAll {
+  cursor: pointer;
+}
+
+svg.bi-trash {
+  height: 50px;
+  width: 20px;
+  color: red;
+}
+
+#searchInput {
+  width: 500px;
+  height: 20px;
+  padding: 8px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+#memberList {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.member,
+.toolbar {
+  border: 1px solid black;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.member input,
+span {
+  width: 100%;
+}
+
+.toolbar {
+  align-items: center;
+  background-color: cyan;
+}
+
+.toolbar input,
+span {
+  width: 100%;
+}
+
+.selected {
+  background-color: grey;
+}
+
+.edit {
+  background-color: yellow;
+}
+
+.delete {
+  background-color: red;
+}
+
+.pagination {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+.pagination button {
+  margin-left: 5px;
+}
