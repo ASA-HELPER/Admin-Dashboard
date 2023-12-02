@@ -29,7 +29,7 @@ function fetchDataAndStore() {
 }
 
 // Call the function to fetch data and store if localStorage is empty
-window.addEventListener("load",()=>{
+window.addEventListener("load",function (){
   fetchDataAndStore();
 })
 
