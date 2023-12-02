@@ -6,7 +6,7 @@ const itemsPerPage = 10;
 // Function to fetch data from the API and store in localStorage if it's empty
 function fetchDataAndStore() {
   const localStorageData = localStorage.getItem('membersData');
-  if (localStorageData!=null && localStorageData.length==0) {
+  if (localStorageData!=null && localStorageData?.length==0) {
     fetch('https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json')
       .then(response => response.json())
       .then(data => {
@@ -62,7 +62,7 @@ let selectAllChecked = false;
 
 // Function to initialize checkboxStates array based on membersData length
 function initializeCheckboxStates() {
-  checkboxStates = Array(membersData.length).fill(false);
+  checkboxStates = Array(membersData?.length).fill(false);
 }
 
 // Function to handle "Select/Deselect All" checkbox for the current page
@@ -165,7 +165,7 @@ function editMember(memberId,updatedName,updatedEmail,updatedRole) {
 // Function to handle member deletion
 function deleteMember(memberId) {
   let index = -1;
-  for(var i=0;i<membersData.length;i++)
+  for(var i=0;i<membersData?.length;i++)
   {
     if(membersData[i].id==memberId)
     {
@@ -196,7 +196,7 @@ function deleteSelected(){
 
   membersData = membersData.filter(member => !selectedIds.includes(member.id));
   selectAllChecked = false;
-  if(selectedIds.length==0)
+  if(selectedIds?.length==0)
   {
     alert("You have selected no items to delete.")
     return;
@@ -220,7 +220,7 @@ searchInput.addEventListener('keypress', function(event) {
     );
     membersData = filteredMembers;
     displayMembers(1, membersData);
-    renderPagination(membersData.length);
+    renderPagination(membersData?.length);
   }
 });
 
@@ -235,12 +235,12 @@ searchInput.addEventListener('change',function(event){
     );
     membersData = filteredMembers;
     displayMembers(1, membersData);
-    renderPagination(membersData.length);
+    renderPagination(membersData?.length);
   }
 })
 
 // Function to render pagination
-function renderPagination(totalItems = membersData.length) {
+function renderPagination(totalItems = membersData?.length) {
   const paginationDiv = document.querySelector('.pagination');
   paginationDiv.innerHTML = '';
   const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -272,7 +272,7 @@ function createPaginationButton(text, targetPage) {
   if (text === 'First' || text === 'Previous' || text === 'Next' || text === 'Last') {
     button.classList.add(text.toLowerCase()+'-page');
     button.onclick = () => {
-      if (targetPage >= 1 && targetPage <= Math.ceil(membersData.length / itemsPerPage)) {
+      if (targetPage >= 1 && targetPage <= Math.ceil(membersData?.length / itemsPerPage)) {
         currentPage = targetPage;
         displayMembers(currentPage);
         renderPagination();
