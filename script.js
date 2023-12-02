@@ -39,7 +39,7 @@ function displayMembers(page, data = membersData) {
   const endIndex = startIndex + itemsPerPage;
   // getting the sliced data for current page
   const membersToDisplay = data?.slice(startIndex, endIndex);
-  membersToDisplay.forEach(member => {
+  membersToDisplay?.forEach(member => {
     const memberDiv = document.createElement('div');
     memberDiv.classList.add('member');
     memberDiv.innerHTML = `
@@ -70,7 +70,7 @@ document.getElementById('selectAll').addEventListener('change', function() {
   const checkboxes = document.querySelectorAll('.member-checkbox');
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  checkboxes.forEach((checkbox, index) => {
+  checkboxes?.forEach((checkbox, index) => {
     const isVisible = (index+startIndex) >= startIndex && (index+startIndex) < endIndex;
     if (isVisible) {
       checkbox.checked = this.checked;
@@ -93,7 +93,7 @@ document.getElementById('selectAll').addEventListener('change', function() {
 
 // Function to handle individual checkboxes for the current page
 let memberCheckboxes = document.querySelectorAll('.member-checkbox');
-memberCheckboxes.forEach((checkbox, index) => {
+memberCheckboxes?.forEach((checkbox, index) => {
   checkbox.checked = checkboxStates[index];
   checkbox.addEventListener('change', function() {
     let checkboxes = document.querySelectorAll('.member-checkbox');
@@ -139,7 +139,7 @@ function saveMember(index)
 // Function to handle member editing
 function editMember(memberId,updatedName,updatedEmail,updatedRole) {
   let index = -1;
-  membersData.forEach((element,ind) => {
+  membersData?.forEach((element,ind) => {
     if(element.id == memberId)
     {
       index = ind;
@@ -187,7 +187,7 @@ let selectedIds = [];
 // Function to delete the selected items
 function deleteSelected(){
   const checkboxes = document.querySelectorAll('.member-checkbox');
-  checkboxes.forEach(checkbox => {
+  checkboxes?.forEach(checkbox => {
     if (checkbox.checked) {
       const memberId = checkbox.value;
       selectedIds.push(memberId);
