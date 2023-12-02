@@ -6,13 +6,13 @@ const itemsPerPage = 10;
 // Function to fetch data from the API and store in localStorage if it's empty
 function fetchDataAndStore() {
   const localStorageData = localStorage.getItem('membersData');
-  if (localStorageData==null && localStorageData?.length==0) {
+  if (localStorageData?.length==0) {
     fetch('https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json')
       .then(response => response.json())
       .then(data => {
         localStorage.setItem('membersData', JSON.stringify(data));
         membersData = data
-        displayMembers(currentPage);
+        displayMembers(currentPage,membersData);
         renderPagination();
       })
       .catch(error => console.error('Error fetching data:', error));
@@ -43,13 +43,13 @@ function displayMembers(page, data = membersData) {
     const memberDiv = document.createElement('div');
     memberDiv.classList.add('member');
     memberDiv.innerHTML = `
-      <input type="checkbox" class="member-checkbox" value="${member.id}">
-      <span>${member.name}</span>
-      <span>${member.email}</span>
-      <span>${member.role}</span>
+      <input type="checkbox" class="member-checkbox" value="${member?.id}">
+      <span>${member?.name}</span>
+      <span>${member?.email}</span>
+      <span>${member?.role}</span>
       <span>
-      <button class="edit" onclick="editMember(${member.id}, '${member.name}','${member.email}','${member.role}')">Edit</button>
-      <button class="delete" onclick="deleteMember(${member.id})">Delete</button>
+      <button class="edit" onclick="editMember(${member?.id}, '${member?.name}','${member?.email}','${member?.role}')">Edit</button>
+      <button class="delete" onclick="deleteMember(${member?.id})">Delete</button>
       </span>
     `;
     memberList.appendChild(memberDiv);
@@ -102,7 +102,7 @@ memberCheckboxes?.forEach((checkbox, index) => {
   });
 });
 
-document.getElementById('memberList').addEventListener('change', function(event) {
+document.getElementById('memberList')?.addEventListener('change', function(event) {
   if (event.target.matches('.member-checkbox')) {
     const checkbox = event.target;
     const row = checkbox.closest('div');
@@ -118,17 +118,17 @@ function saveMember(index)
 {
   const memberDiv = document.querySelector(`.member:nth-child(${index + 1})`);
   const member = membersData[index];
-  member.name = document.getElementById('editName').value;
-  member.email = document.getElementById('editEmail').value;
-  member.role = document.getElementById('editRole').value;
+  member.name = document.getElementById('editName')?.value;
+  member.email = document.getElementById('editEmail')?.value;
+  member.role = document.getElementById('editRole')?.value;
   memberDiv.innerHTML = `
-      <input type="checkbox" class="member-checkbox" value="${member.id}">
-      <span>${member.name}</span>
-      <span>${member.email}</span>
-      <span>${member.role}</span>
+      <input type="checkbox" class="member-checkbox" value="${member?.id}">
+      <span>${member?.name}</span>
+      <span>${member?.email}</span>
+      <span>${member?.role}</span>
       <span>
-      <button class="edit" onclick="editMember(${member.id}, '${member.name}','${member.email}','${member.role}')">Edit</button>
-      <button class="delete" onclick="deleteMember(${member.id})">Delete</button>
+      <button class="edit" onclick="editMember(${member?.id}, '${member?.name}','${member?.email}','${member?.role}')">Edit</button>
+      <button class="delete" onclick="deleteMember(${member?.id})">Delete</button>
       </span>
     `;
     localStorage.setItem('membersData', JSON.stringify(membersData));
@@ -153,9 +153,9 @@ function editMember(memberId,updatedName,updatedEmail,updatedRole) {
     member.role = updatedRole;
     // Create input fields to edit member details
     memberDiv.innerHTML = `
-      <input type="text" id="editName" value="${member.name}">
-      <input type="text" id="editEmail" value="${member.email}">
-      <input type="text" id="editRole" value="${member.role}">
+      <input type="text" id="editName" value="${member?.name}">
+      <input type="text" id="editEmail" value="${member?.email}">
+      <input type="text" id="editRole" value="${member?.role}">
       <button class="save" onclick="saveMember(${index})">Save</button>
     `;
   }
@@ -194,7 +194,7 @@ function deleteSelected(){
     }
   });
 
-  membersData = membersData.filter(member => !selectedIds.includes(member.id));
+  membersData = membersData?.filter(member => !selectedIds?.includes(member.id));
   selectAllChecked = false;
   if(selectedIds?.length==0)
   {
@@ -209,14 +209,14 @@ function deleteSelected(){
 }
 
 const searchInput = document.getElementById('searchInput');
-searchInput.addEventListener('keypress', function(event) {
+searchInput?.addEventListener('keypress', function(event) {
   if (event.key === 'Enter') {
     const searchTerm = event.target.value.trim();
     membersData = JSON.parse(localStorage.getItem('membersData'));
-    const filteredMembers = membersData.filter(member =>
-      member.role.includes(searchTerm) ||
-      member.name.includes(searchTerm) ||
-      member.email.includes(searchTerm)
+    const filteredMembers = membersData?.filter(member =>
+      member?.role.includes(searchTerm) ||
+      member?.name.includes(searchTerm) ||
+      member?.email.includes(searchTerm)
     );
     membersData = filteredMembers;
     displayMembers(1, membersData);
@@ -227,11 +227,11 @@ searchInput.addEventListener('keypress', function(event) {
 searchInput.addEventListener('change',function(event){
   if (event.target.value.trim() == '') {
     const searchTerm = event.target.value.trim();
-    membersData = JSON.parse(localStorage.getItem('membersData'));
-    const filteredMembers = membersData.filter(member =>
-      member.role.includes(searchTerm) ||
-      member.name.includes(searchTerm) ||
-      member.email.includes(searchTerm)
+    membersData = JSON.parse(localStorage?.getItem('membersData'));
+    const filteredMembers = membersData?.filter(member =>
+      member?.role.includes(searchTerm) ||
+      member?.name.includes(searchTerm) ||
+      member?.email.includes(searchTerm)
     );
     membersData = filteredMembers;
     displayMembers(1, membersData);
