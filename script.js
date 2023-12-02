@@ -38,7 +38,7 @@ function displayMembers(page, data = membersData) {
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   // getting the sliced data for current page
-  const membersToDisplay = data.slice(startIndex, endIndex);
+  const membersToDisplay = data?.slice(startIndex, endIndex);
   membersToDisplay.forEach(member => {
     const memberDiv = document.createElement('div');
     memberDiv.classList.add('member');
