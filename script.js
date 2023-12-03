@@ -5,16 +5,6 @@ const itemsPerPage = 10;
 
 // Function to fetch data from the API and store in localStorage if it's empty
 function fetchDataAndStore() {
-  const localStorageData = localStorage.getItem('membersData');
-  if(localStorage.getItem('membersData')!==undefined)
-  {
-    // If data is already in localStorage, then parse the data from the localstorage.
-    membersData = JSON.parse(localStorageData);
-    displayMembers(currentPage);
-    renderPagination();
-  }
-  else
-  {
     fetch('https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json')
       .then(response => response.json())
       .then(data => {
@@ -24,7 +14,6 @@ function fetchDataAndStore() {
         renderPagination();
       })
       .catch(error => console.error('Error fetching data:', error));
-  }
 }
 
 // Call the function to fetch data and store if localStorage is empty
