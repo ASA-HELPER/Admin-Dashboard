@@ -1,4 +1,4 @@
-# Admin-Dashboard.github.io
+# Admin Dashboard
 The project is an assignment for a front-end internship. It is a simple Admin Dashboard having a search bar for users that can filter on any property. Pagination is also implemented and navigation buttons are also provided. On clicking the edit button in a row, the users will be able to edit the row itself. The checkbox on the top left is a shortcut to select or deselect all displayed rows. Multiple selected rows can be deleted at once using the top right trash icon.
 
 ## Project Screenshots
